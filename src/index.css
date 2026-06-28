@@ -1,0 +1,69 @@
+:root {
+  --bg-app: #F4EDE3;
+  --surface-card: #FFFFFF;
+  --surface-soft: #FBF6EE;
+  --surface-soft-2: #FBF3EA;
+  --surface-graph: #FBF8F2;
+
+  --ink: #3A332D;
+  --muted: #9A8C7C;
+  --muted-2: #A99A88;
+  --faint: #B0A293;
+  --faint-2: #C9BBA8;
+
+  --hairline: #F1E8DC;
+  --hairline-2: #EEE3D5;
+  --hairline-3: #F0E5D8;
+
+  --accent: #C56A4E;
+  --accent-hover: #CF7E62;
+  --accent-ink: #9A4E33;
+  --accent-soft: #F6E3DA;
+  --accent-on-fill: #F4D6C8;
+
+  --avatar-bg: #E7C3AE;
+  --avatar-text: #8A4E36;
+
+  --cat-project-text: #C56A4E;
+  --cat-project-bg: #F6E3DA;
+  --cat-project-dot: #C56A4E;
+  --cat-perf-text: #A77B22;
+  --cat-perf-bg: #F6EBD0;
+  --cat-perf-dot: #C99A3F;
+  --cat-exp-text: #5E7A4A;
+  --cat-exp-bg: #E5EED9;
+  --cat-exp-dot: #7E9460;
+  --cat-interest-text: #95607E;
+  --cat-interest-bg: #F0E2EC;
+  --cat-interest-dot: #A8718F;
+  --cat-review-dot: #6E86A3;
+
+  --shadow-card: 0 6px 22px rgba(120,90,60,.06);
+  --shadow-card-sm: 0 4px 14px rgba(120,90,60,.06);
+  --shadow-accent: 0 6px 18px rgba(197,106,78,.18);
+  --shadow-modal: 0 24px 60px rgba(40,28,16,.3);
+  --shadow-frame: 0 1px 4px rgba(60,45,25,.1);
+
+  --font-heading: 'Gowun Dodum', sans-serif;
+  --font-body: 'IBM Plex Sans KR', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg-app);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font-family: inherit; color: var(--ink); }
+a { text-decoration: none; color: inherit; }
