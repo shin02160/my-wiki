@@ -8,13 +8,10 @@ export const DB_IDS = {
   reviews:   '33e7a096-178b-475f-96f3-21f557618656',
 };
 
-const TOKEN = import.meta.env.VITE_NOTION_TOKEN;
-// dev: Vite proxy /notion-api → https://api.notion.com/v1
-// prod: Vercel rewrites /notion-api → https://api.notion.com/v1
+// 토큰은 서버(Vercel 서버리스 함수 / Vite 프록시)에서 처리
+// 클라이언트는 /notion-api/* 로만 요청
 const API_BASE = '/notion-api';
 const HEADERS = {
-  'Authorization': `Bearer ${TOKEN}`,
-  'Notion-Version': '2025-09-03',
   'Content-Type': 'application/json',
 };
 
