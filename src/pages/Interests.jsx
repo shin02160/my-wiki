@@ -1,6 +1,7 @@
 import { useStore } from '../store';
 import Card from '../components/Card';
 import { CategoryChip, StatusChip } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 
 const CAT_COLORS = {
   '관심사': { bg: 'var(--cat-interest-bg)', border: 'var(--cat-interest-dot)', text: 'var(--cat-interest-text)' },
@@ -29,6 +30,7 @@ export default function Interests() {
   const setView = useStore(s => s.setInterestView);
   const selectedId = useStore(s => s.selectedInterest);
   const setSelected = useStore(s => s.setSelectedInterest);
+  const fetchInterests = useStore(s => s.fetchInterests);
 
   const selected = interests.find(i => i.id === selectedId) || interests[0];
 
@@ -38,9 +40,12 @@ export default function Interests() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Card padding="22px 26px">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>관심사 맵</div>
-            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>관심 주제와 연결 관계 시각화</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>관심사 맵</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>관심 주제와 연결 관계 시각화</div>
+            </div>
+            <RefreshButton onRefresh={fetchInterests} />
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button style={{ padding: '7px 14px', borderRadius: 999, background: 'var(--surface-soft)', border: '1px solid var(--hairline-2)', fontSize: 12, color: 'var(--muted)', cursor: 'pointer' }}>기간 전체 ▾</button>

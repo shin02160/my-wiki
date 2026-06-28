@@ -1,6 +1,7 @@
 import { useStore } from '../store';
 import Card from '../components/Card';
 import { CategoryChip, MicroTag, AccentPill } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 
 const COLUMNS = [
   { status: '진행 중', dot: 'var(--accent)', dotColor: 'var(--accent)' },
@@ -42,14 +43,18 @@ function ProjectCard({ proj }) {
 export default function Projects() {
   const projects = useStore(s => s.projects);
   const setModal = useStore(s => s.setModal);
+  const fetchProjects = useStore(s => s.fetchProjects);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Card padding="22px 26px">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>프로젝트 허브</div>
-            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>상태별 프로젝트 관리</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>프로젝트 허브</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>상태별 프로젝트 관리</div>
+            </div>
+            <RefreshButton onRefresh={fetchProjects} />
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button style={{

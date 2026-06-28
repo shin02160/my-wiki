@@ -1,6 +1,7 @@
 import { useStore } from '../store';
 import Card from '../components/Card';
 import { StatusChip } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 
 const TYPES = ['전체', '월간', '분기', '연간'];
 const TYPE_DOT = { '월간': 'var(--accent)', '분기': 'var(--cat-interest-dot)', '연간': 'var(--cat-exp-dot)' };
@@ -9,6 +10,7 @@ export default function Reviews() {
   const reviews = useStore(s => s.reviews);
   const type = useStore(s => s.reviewType);
   const setType = useStore(s => s.setReviewType);
+  const fetchReviews = useStore(s => s.fetchReviews);
 
   const filtered = type === '전체' ? reviews : reviews.filter(r => r.type === type);
   const latest = filtered[0];
@@ -23,9 +25,12 @@ export default function Reviews() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Card padding="22px 26px">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>주기별 리뷰</div>
-            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>자기 이해 데이터 누적</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>주기별 리뷰</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>자기 이해 데이터 누적</div>
+            </div>
+            <RefreshButton onRefresh={fetchReviews} />
           </div>
           <div style={{ display: 'flex', background: 'var(--surface-soft)', borderRadius: 999, padding: 3, gap: 2 }}>
             {TYPES.map(t => (

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStore } from '../store';
 import Card from '../components/Card';
 import { CategoryChip, AccentPill } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 
 const COLUMNS = [
   { status: '캡처됨',     dot: 'var(--faint-2)' },
@@ -37,14 +38,18 @@ function IdeaCard({ idea }) {
 export default function Ideas() {
   const ideas = useStore(s => s.ideas);
   const setModal = useStore(s => s.setModal);
+  const fetchIdeas = useStore(s => s.fetchIdeas);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <Card padding="22px 26px">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>아이디어 인박스</div>
-            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>빠른 캡처 → 발전 → 프로젝트화</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24 }}>아이디어 인박스</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>빠른 캡처 → 발전 → 프로젝트화</div>
+            </div>
+            <RefreshButton onRefresh={fetchIdeas} />
           </div>
         </div>
         {/* Capture bar */}

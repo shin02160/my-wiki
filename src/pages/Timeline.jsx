@@ -1,6 +1,7 @@
 import { useStore } from '../store';
 import Card from '../components/Card';
 import { CategoryChip } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 
 const PERIODS = ['전체 기간', '2026', '2025'];
 const CATEGORIES = ['전체', '프로젝트', '공연', '경험', '관심사', '리뷰'];
@@ -19,6 +20,7 @@ export default function Timeline() {
   const setPeriod = useStore(s => s.setTimelinePeriod);
   const cat = useStore(s => s.timelineCategory);
   const setCat = useStore(s => s.setTimelineCategory);
+  const fetchTimeline = useStore(s => s.fetchTimeline);
 
   const filtered = timeline.filter(e => {
     const yearOk = period === '전체 기간' || e.date.startsWith(period);
@@ -38,9 +40,12 @@ export default function Timeline() {
       {/* Header */}
       <Card padding="22px 26px">
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24, color: 'var(--ink)' }}>타임라인</div>
-            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>연도별로 쌓인 사건과 관심의 흐름</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-heading)', fontSize: 24, color: 'var(--ink)' }}>타임라인</div>
+              <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 4 }}>연도별로 쌓인 사건과 관심의 흐름</div>
+            </div>
+            <RefreshButton onRefresh={fetchTimeline} />
           </div>
           {/* Period segmented */}
           <div style={{ display: 'flex', background: 'var(--surface-soft)', borderRadius: 999, padding: 3, gap: 2, flexShrink: 0 }}>

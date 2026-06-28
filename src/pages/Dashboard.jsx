@@ -1,5 +1,6 @@
 import Card from '../components/Card';
 import { CategoryChip, StatusChip, AccentPill } from '../components/Chip';
+import RefreshButton from '../components/RefreshButton';
 import { useStore } from '../store';
 
 function StatCard({ label, value, accent }) {
@@ -37,6 +38,7 @@ export default function Dashboard() {
   const thisMonthIdeas = ideas.filter(i => i.capturedAt >= '2026-06').length;
   const totalReviews = reviews.length;
 
+  const fetchAll = useStore(s => s.fetchAll);
   const today = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
 
   const latestReview = reviews[0];
@@ -45,7 +47,10 @@ export default function Dashboard() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {/* Greeting header */}
       <Card padding="22px 26px">
-        <div style={{ fontSize: 12, color: 'var(--muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em', marginBottom: 8 }}>{today}</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <div style={{ fontSize: 12, color: 'var(--muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em' }}>{today}</div>
+          <RefreshButton onRefresh={fetchAll} />
+        </div>
         <div style={{ fontFamily: 'var(--font-heading)', fontSize: 26, color: 'var(--ink)', marginBottom: 16 }}>안녕하세요, 오늘도 기록해볼까요</div>
         <div style={{
           background: 'var(--surface-soft)',
