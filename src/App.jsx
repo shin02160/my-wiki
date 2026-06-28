@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import { CaptureModal, NewProjectModal } from './components/Modals';
 import Dashboard from './pages/Dashboard';
@@ -20,6 +21,9 @@ const PAGES = {
 export default function App() {
   const route = useStore(s => s.route);
   const modal = useStore(s => s.modal);
+  const fetchAll = useStore(s => s.fetchAll);
+
+  useEffect(() => { fetchAll(); }, []);
   const Page = PAGES[route] || Dashboard;
 
   return (
